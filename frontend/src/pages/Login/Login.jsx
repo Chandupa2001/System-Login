@@ -1,7 +1,11 @@
 import React from 'react'
 import './Login.css'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+
+    const navigation = useNavigate();
+
   return (
     <div className='login'>
         <div className="login-container">
@@ -18,7 +22,7 @@ const Login = () => {
                 <button type='submit'>Login</button>
             </form>
             <p className="signup-text">
-                Do not have an account? <span>Sign Up</span>
+                Do not have an account? <span onClick={() => navigation('/signup')}>Sign Up</span>
             </p>
         </div>
     </div>
