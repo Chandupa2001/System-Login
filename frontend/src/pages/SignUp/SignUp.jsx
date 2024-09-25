@@ -11,6 +11,7 @@ const SignUp = () => {
         password: "",
         phoneNumber: ""
     })
+    const [token, setToken] = useState("")
 
     const navigation = useNavigate();
 
@@ -22,10 +23,17 @@ const SignUp = () => {
 
     const onSignUp = async (event) => {
         event.preventDefault();
-        let url = "http://http://localhost:5000/api/user/signup"
+        let url = "http://localhost:5000/api/user/signup"
 
         try {
             const response = await axios.post(url,data)
+            if (response.data.success) {
+                setToken(response.data.token);
+                localStorage.setItem("token", response.data.token);
+                alert("Registered Successfully")
+            } else {
+                alert(response.data.message);
+            }
         } catch (error) {
             console.error(error)
         }
